@@ -4,10 +4,20 @@
 /delete-node/ &hrmem;
 
 / {
+	chosen {
+		zephyr,flash = &itcm_rom;
+		zephyr,sram = &itcm_ram;
+	};
+
 	soc {
-		hrmem: memory@0 {
-			compatible = "sc,hrmem";
-			reg = <0x00000000 DT_SIZE_K(32)>;
+		itcm_rom: itcm@0 {
+			compatible = "arm,itcm";
+			reg = <0x00000000 DT_SIZE_K(16)>;
+		};
+
+		itcm_ram: itcm@4000 {
+			compatible = "arm,itcm";
+			reg = <0x00004000 DT_SIZE_K(16)>;
 		};
 
 		spi0: spi@40000000 {
